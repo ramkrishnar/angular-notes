@@ -1,0 +1,31 @@
+property binding:
+Property binding simply means you're passing data from the component class and
+setting the value of a given element in the view. Property binding is one way, in that the data is transferred from the component to 
+the class.
+
+The benefit of property binding is that it allows you to control element property values from the component and change them whenever needed.
+ex:
+component class:
+allowserver=false;
+constructor(){
+setTimeOut(()=>{this.allowserver=true},2000)
+}
+template:
+<button [disabled]="!allowserver"></disabled>
+
+Event binding:
+---------------
+With the [] we are binding to an input of a Component.
+
+With the () we are binding to an output of a Component.
+ex:
+app.component.ts:
+server='server not created';
+onCreateServer(){
+this.server='server created';
+}
+template:-
+----------
+<button (click)="onCreateServer()"></disabled>
+<p>{{server}}</p>
+
