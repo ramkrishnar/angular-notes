@@ -1,4 +1,5 @@
-property binding:
+property binding:--
+------------------
 Property binding simply means you're passing data from the component class and
 setting the value of a given element in the view. Property binding is one way, in that the data is transferred from the component to 
 the class.
@@ -11,7 +12,7 @@ constructor(){
 setTimeOut(()=>{this.allowserver=true},2000)
 }
 template:
-<button [disabled]="!allowserver"></disabled>
+<button [disabled]="!allowserver"></button>
 
 Event binding:
 ---------------
@@ -26,6 +27,71 @@ this.server='server created';
 }
 template:-
 ----------
-<button (click)="onCreateServer()"></disabled>
+<button (click)="onCreateServer()"></button>
 <p>{{server}}</p>
+
+Two way DataBinding:
+----------------------
+server='testserver';
+
+<input type="text" [(ngModel)]='server'/>
+<p>{{server}}</p>
+
+*ngIf:
+structural dirctive change structure of dom
+<p *ngIf='servercreated'>server created {{server}}</p>
+
+ng-template:-(if else)
+------------  
+mark the template
+<p *ngIf='servercreated; else noserver'>server created {{server}}</p>
+<ng-template #noserver>
+<p >no server  created </p>
+</ng-template>
+
+ngStyle:
+--------
+<p [ngStyle]="{backGrondColor:getcolor()}"></p>
+ 
+ *ngFor
+ ------ <p *ngFor="let server of servers">
+ </p>
+
+
+
+binding custom properties:(parent to child communication):-
+---------------------------------------------------------
+server.component.ts:
+--------------------
+@Input() element:{name:string,type:string,content:string};//component properties asccesing only inside of the component by using @input 
+asccessing outside possiable.
+server.html:
+-----------
+<p>{{server.name}}</p> // server name accessing from parent component(app component)
+
+app.component:
+serverElement=[{name:'test',type:'server',content:'just server'}]
+app.html:
+--------
+<app-server *ngFor='let server of ServerElement' [element]='server'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
