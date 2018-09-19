@@ -76,6 +76,34 @@ app.html:
 <app-server *ngFor='let server of ServerElement' [element]='server'>
 
 
+binding custom events:(child to parent communication):-
+------------------------------------------------------
+app.component:
+serveradd(serverData:{name:string,content:string}){
+this.serverElement.push({type:'server',name:serverData.name,content:serverData.content})
+}
+app.html:
+<cockpit (serveradded)="serveradd($event)"></cockpit>// serevradded custom event
+
+cockpit.component:
+name='test';
+content='just content'
+@output() serveradded=new EventEmiter<{name:string,content:string}>()
+onserveradd(){
+this.serveradded.emit({this.name,this.content})
+}
+cockpit.html:
+--------------
+<input type="text" [(ngModel)]='name'>
+<input type="text" [(ngModel)]='content'>
+<button (click)='onserveradd()'>Add server</button>
+
+
+
+
+
+
+
 
 
 
