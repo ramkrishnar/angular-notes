@@ -1,0 +1,10 @@
+custom{
+    min-height: 500px;
+    min-width: 200px;
+    text-align: Left;
+    
+}
+input.ng-valid.ng-touch{
+    border: red 1px;
+
+}
