@@ -98,7 +98,19 @@ cockpit.html:
 <input type="text" [(ngModel)]='content'>
 <button (click)='onserveradd()'>Add server</button>
 
+local refernces:
+----------------
+<input type="text" #servername>
+<button (click)="addserver(servername.value())"></button>
 
+viewchild:
+----------
+before method execution (not passing through params)we want to access the dom then we choose @ViewChild Decrorator
+<input type="text" #servername>
+app.component:
+@ViewChild('servername') servername:ElementRef;
+
+this.servername.nativeElement.value
 
 
 
