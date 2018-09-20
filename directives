@@ -1,0 +1,28 @@
+Directives allow you to attach behavior to elements in the DOM.
+Attribute Directives.
+Structural Directives
+import {Directive} from '@angular/core'
+@Directive({
+selector:'[basicHighlight]'
+})
+export class BasicHighlight implements Oninit{
+constructor(private elem:ElementRef){
+}
+ngOnInit(){
+this.elem.NativeElement.style.backgroundColor='green'
+}
+
+import this Directive into NgModule for using globally
+
+app.html:
+<p basicHighlight>text color green</p>
+
+HostListner:
+-------------
+HostListner listen events like mouse over,mouse leave etc
+ex:
+@HostListner('mouseover') over(){
+this.elem.NativeElement.style.backgroundColor='green'
+}
+
+
