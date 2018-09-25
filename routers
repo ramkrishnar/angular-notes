@@ -1,0 +1,101 @@
+declare routes
+app.module.ts
+
+const approute:Routes=[{path:'',component:CockpitComponent},
+{path:'server', component:UsersComponent},
+{path:'Address/:id/:name', component:UsersComponent}, // : indicates dynamically pass the data
+{path:'Address', component:AngularcurdComponent},
+]
+
+in import section register approutes in RouterModule.forRoot() method by this declaration  angular  know which routers registred
+RouterModule.forRoot(approute);
+
+
+app.component.html:
+--------------------
+<ul class="nav nav-tabs">
+            <li role="presentation" 
+            ><a routerLink='/' routerLinkActive="active">Cockpit</a></li>
+            <li role="presentation"><a routerLink="/server" routerLinkActive="active" >server</a></li>
+            <li role="presentation"><a [routerLink]="['/Address']" routerLinkActive="active">Address</a></li>
+        </ul>
+        routerLink:
+        -----------
+The directive for binding a clickable HTML element to a route. Clicking an element with 
+a routerLink directive that is bound to a string or a link parameters array triggers a navigation.
+
+routerLinkActive:
+-----------------
+The directive for adding/removing classes from an HTML element when an associated routerLink 
+contained on or inside the element becomes active/inactive.
+
+
+router:
+-------
+used to navgiate the urls through programitically
+
+ex:-
+constructor(private router:Router) { }
+user:{id:number,name:string}
+ 
+reload(){
+this.router.navigate(['/Address'])
+}
+
+
+ActivatedRoute:
+----------------
+  used to access data from urls
+  
+ constructor(private route:ActivatedRoute) { }
+user:{id:number,name:string}
+  ngOnInit() {
+    this.user={id:this.route.snapshot.params['id'],name:this.route.snapshot.params['name']}
+  }
+
+<p>user with id {{user.id}}</p><br>
+<p>user with name {{user.name}}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
