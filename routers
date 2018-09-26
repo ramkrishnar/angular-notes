@@ -56,9 +56,61 @@ user:{id:number,name:string}
 <p>user with id {{user.id}}</p><br>
 <p>user with name {{user.name}}</p>
 
+query params:
+--------------
 
+<a [routerLink]="['/Address',5,'edit']" 
+[queryParams]="{allowedit:5}"
+ [fragment]="loading"
+>loadServer</a>
+o/p:
+http://localhost:4200/Address/5/edit?allowedit=5
 
+Access queryparams:
+--------------------
+constructor(private route:ActivteRoute){}
+console.log(this.route.snapshot.queryParams)//{allowedit:1}
+this.route.queryParams.subscribe((param:Params)=>{
+console.log(this.route.snapshot.queryParams)})//reactive Apporach
 
+child routes:
+--------------
+declare childern propertie in particular parent router and <router-outlet> tag declare in parent template
+
+const approute:Routes=[{path:'',component:CockpitComponent},
+{path:'server', component:UsersComponent},
+
+{path:'Address', component:AngularcurdComponent, children:[
+  {path:':id/:name', component:UsersComponent}
+]},
+]
+
+AngularcurdComponent.html
+
+<router-outlet> </router-outlet>
+
+wildcard routes and redirectTo :
+-----------------
+const approute:Routes=[{path:'',component:CockpitComponent},
+{path:'server', component:UsersComponent},
+
+{path:'Address', component:AngularcurdComponent, children:[
+  {path:':id/:name', component:UsersComponent}
+]},
+{path:'not-found' ,component:PageNotFoundComponent},
+{path:'**',redirectTo:'/not-found'}
+]
+
+route gurds:
+As the name implies CanActivate guard determines if a route can be activated.
+There are several use cases for CanActivate guard. 
+
+1. We can use it to check if the user is authenticated before allowing him to access protected areas of the application.
+If he is not authenticated, we redirect him to AccessDenied component or Login component.
+
+2. Similarly we can use it to check, if a specific resource he is looking for exists. 
+if the resource does not exist we redirect him to the PageNotFound component. If the resource exists,
+we redirect the user to navigate the resource.
 
 
 
